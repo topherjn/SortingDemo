@@ -34,10 +34,10 @@ public class SortingDemo {
 
         printArray(numbers);
         long startTime = System.nanoTime();
-        insertionSort(numbers);
-       
+
+        SortingDemo.bubbleSort(numbers);
 //        insertionSort(numbers);
-        long endTime = System.nanoTime(); 
+        long endTime = System.nanoTime();
 
         printArray(numbers);
         System.out.println("\n\nTime elapsed: " + (endTime - startTime));
@@ -46,21 +46,32 @@ public class SortingDemo {
 
     public static void printArray(int[] array) {
         System.out.println("\n");
-        
+
         for (int i = 0; i < array.length; i++) {
             System.out.printf("| %d ", array[i]);
         }
         System.out.println("|");
+        for (int i = 0; i < array.length; i++) {
+            if (i > 9) {
+                 System.out.printf("| %d ", i);
+                
+            }
+            else {
+               System.out.printf("|  %d  ", i);
+            }
+        }
+        System.out.println("|");
+
     }
 
     public static void bubbleSort(int[] array) {
 
         int count = 0;
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length -  i - 1; j++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
                 count++;
                 if (array[j] > array[j + 1]) {
-                    System.out.printf("Pass %d: Swap indices %d and %d\n",i+1,j,j+1);
+                    System.out.printf("Pass %d: Swap indices %d and %d\n", i + 1, j, j + 1);
                     swap(array, j, j + 1);
                 }
             }
@@ -79,7 +90,7 @@ public class SortingDemo {
                 j--;
             }
             array[j + 1] = key;
-            
+
             printArray(array);
         }
     }
