@@ -21,65 +21,75 @@ public class SortingDemo {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
         final int SIZE;
-        
-        
+
         System.out.println("How many values in the array?");
 //        SIZE = Integer.parseInt(scanner.nextLine());
-        SIZE = 10;
-        
-        int [] numbers = new int[SIZE];
-        
-        for(int i = 0; i < numbers.length;i++) {
+        SIZE = 20;
+
+        int[] numbers = new int[SIZE];
+
+        for (int i = 0; i < numbers.length; i++) {
             numbers[i] = random.nextInt(100) + 1;
         }
-        
+
         printArray(numbers);
-        
-//        bubbleSort(numbers);
-        insertionSort(numbers);
-        
+        long startTime = System.nanoTime();
+        bubbleSort(numbers);
+       
+//        insertionSort(numbers);
+        long endTime = System.nanoTime(); 
+
         printArray(numbers);
-        
-        
+        System.out.println("\n\nTime elapsed: " + (endTime - startTime));
+
     }
-    
-    public static void printArray(int [] array) {
+
+    public static void printArray(int[] array) {
         System.out.println("\n");
-        for(int i=0;i<array.length;i++) System.out.printf("numbers[%d] == %d\n", i, array[i]);
-    }
-    
-    public static void bubbleSort(int [] array) {
         
-        for(int i = 0; i < array.length;i++)
-            for(int j = 0; j < array.length - 1;j++) {
-                if(array[j] > array[j+1])
-                    swap(array,j,j+1);
-            } 
-        
+        for (int i = 0; i < array.length; i++) {
+            System.out.printf("| %d ", array[i]);
+        }
+        System.out.println("|");
     }
-    
-    public static void insertionSort(int [] array) {
-        int i, key, j; 
-    for (i = 1; i < array.length; i++) { 
-        key = array[i]; 
-        j = i - 1; 
-  
-        /* Move elements of arr[0..i-1], that are 
-          greater than key, to one position ahead 
-          of their current position */
-        while (j >= 0 && array[j] > key) { 
-            array[j + 1] = array[j]; 
-            j = j - 1; 
-        } 
-        array[j + 1] = key; 
-    } 
+
+    public static void bubbleSort(int[] array) {
+
+        int count = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length -  i - 1; j++) {
+                count++;
+                if (array[j] > array[j + 1]) {
+//                    System.out.printf("Pass %d: Swap indices %d and %d\n",i+1,j,j+1);
+                    swap(array, j, j + 1);
+                }
+            }
+        }
+//        System.out.println(count);
     }
-    
-    public static void swap(int [] array, int left, int right) {
-        
+
+    public static void insertionSort(int[] array) {
+        int i, key, j;
+        for (i = 1; i < array.length; i++) {
+            key = array[i];
+            j = i - 1;
+
+            /* Move elements of arr[0..i-1], that are 
+             greater than key, to one position ahead 
+             of their current position */
+            while (j >= 0 && array[j] > key) {
+                array[j + 1] = array[j];
+                j = j - 1;
+            }
+            array[j + 1] = key;
+        }
+    }
+
+    public static void swap(int[] array, int left, int right) {
+
         int temp = array[left];
         array[left] = array[right];
         array[right] = temp;
     }
-    
+
 }
