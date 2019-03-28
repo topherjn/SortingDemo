@@ -69,7 +69,7 @@ public class SortingDemo {
             for (int j = 0; j < array.length -  i - 1; j++) {
                 count++;
                 if (array[j] > array[j + 1]) {
-//                    System.out.printf("Pass %d: Swap indices %d and %d\n",i+1,j,j+1);
+                    System.out.printf("Pass %d: Swap indices %d and %d\n",i+1,j,j+1);
                     swap(array, j, j + 1);
                 }
             }
