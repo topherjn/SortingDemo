@@ -6,12 +6,7 @@
 package sortingdemo;
 
 import java.util.Random;
-import java.util.Scanner;
 
-/**
- *
- * @author nicholson
- */
 public class SortingDemo {
 
     /**
