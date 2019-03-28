@@ -18,32 +18,41 @@ public class SortingDemo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        
+        // set up for generating random numbers
         Random random = new Random();
-        final int SIZE;
-
-        System.out.println("How many values in the array?");
-//        SIZE = Integer.parseInt(scanner.nextLine());
-        SIZE = 20;
-
+        
+        // create an array to store 20 integers
+        final int SIZE = 20;
         int[] numbers = new int[SIZE];
 
+        // fill up the array with 2-digit numbers
         for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = random.nextInt(100) + 1;
+            numbers[i] = random.nextInt(90) + 10;
         }
-
+        
+        // display the original array
+        System.out.println("Original random array of 20 2-digit integers: ");
         printArray(numbers);
+        
+        // start a timer on the JVM clock
         long startTime = System.nanoTime();
+        
+        // perform the sort
         insertionSort(numbers);
        
-//        insertionSort(numbers);
+        // click stop on the stop watch
         long endTime = System.nanoTime(); 
 
+        // print out the final sorted array
         printArray(numbers);
+        
+        // print out how long it took to sort
         System.out.println("\n\nTime elapsed: " + (endTime - startTime));
 
     }
 
+    // prints out the elements of an integer array hopefull in a pretty way
     public static void printArray(int[] array) {
         System.out.println("\n");
         
@@ -69,21 +78,39 @@ public class SortingDemo {
     }
 
     public static void insertionSort(int[] array) {
+        
+        // i is the index of how far in the array is sorted so far
+        // key is the next number to insert into the right spot
+        // j helps in the shifting of numbers to make room for key
         int i, key, j;
+        
+        // the outer loop goes through each element in the array
         for (i = 1; i < array.length; i++) {
+            
+            // key is the next element to insert
             key = array[i];
+            
+            // i - 1 is the furthest element sorted so far
             j = i - 1;
 
+            // if j is bigger than the key, then swap
+            // keep doing this until we get to the beginning of the array
             while (j >= 0 && array[j] > key) {
-                array[j + 1] = array[j];
-                j--;
+                array[j + 1] = array[j--];
+//                j--;
             }
+            
+            // key should be insert in front of the first j
+            // that isn't bigger than key
             array[j + 1] = key;
             
+            // comment this out to stop seeing results of each pass
             printArray(array);
         }
     }
 
+    // given and array and two indices, this method will swap the elements
+    // located at those indices
     public static void swap(int[] array, int left, int right) {
 
         int temp = array[left];
